@@ -1,5 +1,6 @@
 # 长江雨课堂自动刷课脚本
 
+Fork自hu1hu，修改大部分借助LLM完成。
 该脚本使用Selenium自动完成长江雨课堂平台上的课程。它会导航到指定的课程页面，互动视频元素，并以两倍速播放视频来标记它们为已完成。
 
 ## 先决条件
@@ -9,26 +10,15 @@
 - Python 3.x
 - 安装依赖（使用`pip install -r requirements.txt`安装）
 - 用于您的首选浏览器的WebDriver（例如，Google Chrome的ChromeDriver）
+  例如：
+  Edgedriver：https://developer.microsoft.com/zh-cn/microsoft-edge/tools/webdriver/?ch=1&form=MA13LH
+  Chrome：https://googlechromelabs.github.io/chrome-for-testing/
+  Firefox：https://github.com/mozilla/geckodriver/releases/
 
 ## 配置
 
-1. **课程URL:** 更新`url`变量为您要自动完成的具体课程页面URL：
-
-   ```python
-   url = "https://changjiang.yuketang.cn/v2/web/studentLog/16978956"
-   ```
-
-2. **Cookie:** 更新`cookie`字典为您的会话ID或其他必要的身份验证Cookie：
-
-   ```python
-   cookie = {'name': 'sessionid', 'value': 'catf5tpoi584n5k57ipgkcswn0nty4z'}
-   ```
-
-3. **并发数:** 更新`concurrent`变量为您想要处理的并发窗口数：
-
-   ```python
-   concurrent = 5
-   ```
+由于长江雨课堂并行观看多个视频会导致未处于前台的视频无法达到所需完成度，故仅支持单线程。
+脚本运行后用户手动登录并导航至指定课程页面，脚本自动获取Url和Cookie。
 
 ## 使用方法
 
@@ -37,14 +27,13 @@
 2. **运行脚本:** 使用Python执行脚本：
 
    ```shell
-   python yuketang_auto_script.py
+   python yuketang.py
    ```
 
 ## 脚本功能
 
 1. **初始化:**
    - 脚本初始化Selenium WebDriver并设置等待时间为10秒。
-   - 打开指定的课程URL并添加身份验证Cookie。
 2. **导航到课程页面:**
    - 脚本等待"成绩单"元素出现并点击它。
    - 然后它等待视频元素加载并获取页面上的所有视频元素。
@@ -52,9 +41,8 @@
    - 脚本遍历视频列表。
    - 对于每个未标记为"已完成 详情"的视频，它在新窗口中打开视频。
    - 静音视频，将播放速度设置为两倍速，并开始播放视频。
-   - 脚本确保打开的窗口数不超过指定的并发数。
 4. **完成:**
-   - 脚本等待所有视频窗口关闭后再退出。
+   - 一轮遍历完成后重新遍历，直到视频全部完成。
 
 ## 注意事项
 
