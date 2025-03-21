@@ -1,7 +1,6 @@
 # 长江雨课堂自动刷课脚本
 
-Fork自hu1hu，修改大部分借助LLM完成。
-该脚本使用Selenium自动完成长江雨课堂平台上的课程。它会导航到指定的课程页面，互动视频元素，并以两倍速播放视频来标记它们为已完成。
+Fork自hu1hu，修改大部分借助LLM完成。  该脚本使用Selenium自动完成长江雨课堂平台上的课程。  它会导航到指定的课程页面，互动视频元素，并以两倍速播放视频来标记它们为已完成。
 
 ## 先决条件
 
@@ -11,13 +10,13 @@ Fork自hu1hu，修改大部分借助LLM完成。
 - 安装依赖（使用`pip install -r requirements.txt`安装）
 - 用于您的首选浏览器的WebDriver（例如，Google Chrome的ChromeDriver）
   例如：
-  Edgedriver：https://developer.microsoft.com/zh-cn/microsoft-edge/tools/webdriver/?ch=1&form=MA13LH
-  Chrome：https://googlechromelabs.github.io/chrome-for-testing/
+  Edgedriver：https://developer.microsoft.com/zh-cn/microsoft-edge/tools/webdriver/?ch=1&form=MA13LH  
+  Chrome：https://googlechromelabs.github.io/chrome-for-testing/  
   Firefox：https://github.com/mozilla/geckodriver/releases/
 
 ## 配置
 
-由于长江雨课堂并行观看多个视频会导致未处于前台的视频无法达到所需完成度，故仅支持单线程。
+由于长江雨课堂并行观看多个视频会导致未处于前台的视频无法达到所需完成度，故仅支持单线程。  
 脚本运行后用户手动登录并导航至指定课程页面，脚本自动获取Url和Cookie。
 
 ## 使用方法
